@@ -19,7 +19,7 @@ func TestFindByEmail(t *testing.T) {
 	UserHandler := NewUserHandler(userUseCase)
 
 	testData := []struct {
-		name             string
+		testName         string
 		email            string
 		expectedStatus   int
 		expectedResponce Response
@@ -27,7 +27,7 @@ func TestFindByEmail(t *testing.T) {
 		buildStub        func(userUsecase mockUsecase.MockUserUseCase)
 	}{
 		{
-			name:           "success",
+			testName:       "success",
 			email:          "jaseela@gmail.com",
 			expectedStatus: 200,
 			expectedResponce: Response{
@@ -44,7 +44,7 @@ func TestFindByEmail(t *testing.T) {
 	}
 
 	for _, tt := range testData {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.testName, func(t *testing.T) {
 			tt.buildStub(*userUseCase)
 			engine := gin.Default()            //create an engin instance
 			recorder := httptest.NewRecorder() //creeate a responce recorder to capture the responce from the request
